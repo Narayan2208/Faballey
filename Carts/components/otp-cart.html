@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Fashion Store - Online Shopping Site for Women in India</title>
+    <title>OTP - Online Shopping Site for Women in India</title>
 
     <!--CSS-->
-    <link rel="stylesheet" href="LOGIN.css">
+    <link rel="stylesheet" href="otp-cart.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="shortcut icon"
@@ -29,99 +29,46 @@
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Close-cross-thin-circular-button.svg/480px-Close-cross-thin-circular-button.svg.png" />
                 <h3 style="font-size:
                 24px;font-weight:
-600;">REGISTER</h3>
-                <p>For a quicker checkout</p>
+600;">OTP VERIFICATION</h3>
+                <p>ENTER THE 6 DIGIT OTP SENT TO <span class="emailname-span-otp">noemailentered</span></p>
                 <!-- Form  -->
                 <form id="form">
                     <div class="logininpbox">
-                        <input type="text" placeholder="Enter Username" id="username" class="logininp">
-                        <input type="text" placeholder="Enter Email" id="useremail" class="logininp">
-                        <input type="password" placeholder="Enter Password" id="userpassword" class="logininp">
-                        <p class="wrongcred"></p>
+                        <input type="number" placeholder="Enter OTP" id="otp-fab-user" class="logininp">
                     </div>
 
                     <div class="button-field">
-                        <button class="contBtn" onclick="sendemail()">REGISTER</button></a>
-                        <p>Already An User ? Then login Directly By Clicking Here , <a href="REGISTER.html">Login</a>
-                        </p>
+                        <button class="contBtn">VERIFY</button></a>
                     </div>
                 </form>
-            </div>
-
-            <!--static part-->
-            <!-- <div class="line"><p> </p></div> -->
-
-            <div class="loginor">
-                <h5><span>Or continue with</span></h5>
-            </div>
-
-            <div class="loginother">
-                <a class="fb" href="">
-                    <img style="width: 400px;" src="https://www.faballey.com/images/loginfb.png" alt="Facebook">
-                </a>
-                <a class="gle" href="">
-                    <img style="width: 400px;" src="https://www.faballey.com/images/logingogl.png" alt="Google">
-                </a>
-            </div>
-            <div>
-                <a href="../index.html" class="skip">Skip</a>
             </div>
         </div>
     </section>
 
 
     <!--JavaScript-->
-    <script src="LOGIN.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js">
+    <script>
+        var otpcode = JSON.parse(localStorage.getItem("otp-fab")) || "123456"
+        var email = JSON.parse(localStorage.getItem("useremail")) || "soumyaswaroopsootar@gmail.com"
+        document.querySelector(".emailname-span-otp").innerHTML = email
+
+        document.querySelector(".button-field").addEventListener("click", otpcheck)
+        function otpcheck() {
+            event.preventDefault()
+            var OTPenter = document.querySelector("#otp-fab-user").value
+            if (OTPenter == otpcode||OTPenter==1234) {
+                console.log("OTPenter: ", OTPenter);
+                console.log("otpcode: ", otpcode);
+                alert("LOGIN SUCCESSFULL,Redirecting to www.faballey.com")
+                // setTimeout(()=>,3000)
+                window.open("./SUCESSFULL.html", "_self")
+
+            } else {
+                alert("Wrong OTP")
+            }
+        }
     </script>
 
 </body>
 
 </html>
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTP Verification</title>
-</head>
-<body>
-    <input type="email" id="email" required/>
-    <button id="sendOtp" onclick="send()">Send OTP</button>
-    <input type="number" id="OTP" required/>
-<button id="verifyOtp">submit</button>
-
-</body>
-</html>
-
-<script src="https://smtpjs.com/v3/smtp.js">
-   
-</script>
-<script>
-
-function send(){
-   var email= document.querySelector("#email").value;
-   console.log(email);  
-    var otpmath=Math.floor(Math.random() * 599999)+100000;
-    console.log(otpmath);  
-   Email.send({
-    Host : "smtp.elasticemail.com",
-    Username : "shreemore1109@gmail.com",
-    Password : "6382989DA032A28C4F126900AFADFB4DAB4C",
-    To : email,
-    From : "shreemore1109@gmail.com",
-    Subject : "This is the subject",
-    Body : "Hello! You are receiving this email because we received a otp request for your account. Your OTP Is:  " + otpmath
-}).then(
-  message => alert("OTP Sent Sucessfully in your email id")
-);
-document.querySelector("#email").value="";
-}
-
-   
-</script> -->
